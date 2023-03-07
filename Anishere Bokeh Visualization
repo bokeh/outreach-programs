@@ -1,0 +1,65 @@
+## Anishere Mariam Adeola Contributing to the Bokeh Project 1
+
+#import libraries
+import pandas as pd
+import pyarrow.parquet as pq
+from bokeh.io import output_file, output_notebook
+from bokeh.plotting import figure, show
+from bokeh.plotting import reset_output
+from bokeh.models import ColumnDataSource
+from bokeh.layouts import row, column, gridplot
+
+## Working with the `Yellow_Trip_Records for November 2022`
+trips = pq.read_table('yellow_tripdata_2022-11.parquet')
+trips = trips.to_pandas()
+print("Shape: ", trips.shape)
+trips.head()
+
+#DATA WRANGLING
+## There are 3,252,717 rows and 19 columns in this dataset.
+round(trips.isnull().sum()/len(trips) *100,2)
+# There are **3.75%** Null values in only five columns, hence, I am dropping the NULL Values
+# Drop the NULL Values
+trips.dropna(inplace = True)
+#Extract Days of the month
+trips["days"] = trips["tpep_pickup_datetime"].dt.day
+# Calculate the time taken for each trip in minutes as the "trip_time".
+trips["trip_time"] = round((trips["tpep_dropoff_datetime"] - trips["tpep_pickup_datetime"]).dt.seconds/60.0,2)
+# Drop trips longer than 144 minutes (24hours/one day) and lesser than one minute
+trips = trips[(trips["trip_time"] < 145) & (trips["trip_time"] >= 1)]
+# Drop trips with price with 0 USD or less
+trips = trips[trips["fare_amount"] > 0]
+#Extract trips further than 20 miles
+trips = trips[trips["trip_distance"] > 20]
+
+# VISUALIZATION 1
+output_notebook()
+# Create a blank figure
+my_viz = figure(title = "Relationship Between the Time Taken and Price of Trip",
+                height = 500, width = 800,
+               x_axis_label = "Time Taken to complete a Trip (min)", y_axis_label = "Price of Trip (USD)",
+               x_range = (1, 146), y_range = (1,1250))
+# Insert glyph
+my_viz.circle(x = trips["trip_distance"], y = trips["total_amount"])
+# Show visualization
+show(my_viz)
+
+#VISUALIZATION 2
+#output_file('output_file_test.html', title='Empty Bokeh Figure')
+output_notebook()
+# Group trips by day
+day_trip = trips.groupby(["days"])["tip_amount", "total_amount"].sum()
+# Create a blank figure
+my_viz = figure(title = "Daily Tips and Total Money",
+                height = 500, width = 800,
+               x_axis_label = "November 2022", y_axis_label = "Amount (USD)")
+# Insert line_glyph
+my_viz.line(x = day_trip.index, y = day_trip["total_amount"],
+           color = "orange", line_width = 3, legend_label = "Total Amount")
+# Insert bar_glyph
+my_viz.vbar(x = day_trip.index, top = day_trip["tip_amount"],
+           color = "green", width = 0.75, legend_label = "Tip Amount")
+my_viz.legend.location = 'top_left'
+# Show visualization
+show(my_viz)
+reset_output()
