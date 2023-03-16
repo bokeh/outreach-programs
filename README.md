@@ -1,9 +1,12 @@
 # Yellow Taxi Trip Analysis for outreachy Contribution
 This repository is an my contribution to Bokeh for outreachy's contribution period.
 ## Description
-The uploaded files include graphical visualization of various attributes of a [New York Taxi Trip Dataset](https://www.nyc.gov/site/tlc/about/tlc-trip-record-data.page)
-The dataset was taken from (https://www.nyc.gov/site/tlc/about/tlc-trip-record-data.page) for analyis and is available in ####Parquet format.
-The Graphs are plotted using the Bokeh library of Python.
+A.)Dataset and Libraries used
+####1.)The uploaded files include graphical visualization of various attributes of a [New York Taxi Trip Dataset](https://www.nyc.gov/site/tlc/about/tlc-trip-record-data.page)
+####2.)The dataset was taken from (https://www.nyc.gov/site/tlc/about/tlc-trip-record-data.page) for analyis and is available in ####Parquet format .
+####3.)The dataset was using the pandas library of Python
+####3.)The Graphs are plotted using the Bokeh library of Python.
+
 
 
 
