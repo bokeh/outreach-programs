@@ -2,7 +2,6 @@
 This repository is an my contribution to Bokeh for outreachy's contribution period.
 ## Description
 ### A.)Dataset and Libraries used
-<br>
 1.The uploaded files include graphical visualization of various attributes of a [New York Taxi Trip Dataset](https://www.nyc.gov/site/tlc/about/tlc-trip-record-data.page)
 <br>
 2.The dataset was taken from (https://www.nyc.gov/site/tlc/about/tlc-trip-record-data.page) for analyis and is available in ** Parquet format **.
@@ -15,8 +14,7 @@ This repository is an my contribution to Bokeh for outreachy's contribution peri
 <br>
 <br>
 ## How to Install and Run the Project
-<br>
-1. The taxi trip dataset can be downloaded using the given link.
+1. The taxi trip dataset can be downloaded using the [given link](https://www.nyc.gov/site/tlc/about/tlc-trip-record-data.page).
 <br>
 2.To read the dataset, python library: Pandas can be installed using the command : pip install pandas
 <br>
@@ -26,11 +24,12 @@ This repository is an my contribution to Bokeh for outreachy's contribution peri
 <br>
 (ALL THE PROGRAMS WERE BUILT AND RUN ON WINDOWS 10..)
 <br>
+<br>
 ## Running the programs on your system
 <br>
-#### 1.)For Reading Dataset: Test_1
+#### 1.For Reading Dataset: Test_1
 <br>
-#### 2.)For checking visualizations: Test_2
+#### 2.For checking visualizations: Test_2
 <br>
 <br>
 <br>
